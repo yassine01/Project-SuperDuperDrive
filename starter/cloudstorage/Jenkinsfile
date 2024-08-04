@@ -10,9 +10,14 @@ pipeline {
     }
 
     stages {
-        stage('Build Maven') {
+        stage('Checkout') {
             steps {
                 checkout([$class: 'GitSCM', branches: [[name: '*/master']], userRemoteConfigs: [[url: 'https://github.com/yassine01/Project-SuperDuperDrive.git']]])
+            }
+        }
+
+        stage('Build Maven') {
+            steps {
                 dir('starter/cloudstorage') {
                     sh 'mvn clean install -DskipTests'
                 }
