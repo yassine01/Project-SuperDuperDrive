@@ -1,14 +1,41 @@
-HELP.md
+# Compiled class file
 target/
+
+# Log file
+*.log
+
+# Maven
+pom.xml.versionsBackup
+
+# Local configuration file (application.properties)
+src/main/resources/application.properties
+
+# IDEA
+.idea/
+*.iml
+
+# Eclipse
+.settings/
+.classpath
+.project
+
+# VSCode
+.vscode/
+
+# OS-specific files
+.DS_Store
+
+# Optional: Ignore all properties files if you want to keep local configurations
+*.properties
+
+HELP.md
 !.mvn/wrapper/maven-wrapper.jar
-!**/src/main/**
+!src/main/java
 !**/src/test/**
 
 ### STS ###
 .apt_generated
-.classpath
 .factorypath
-.project
 .settings
 .springBeans
 .sts4-cache
@@ -16,7 +43,6 @@ target/
 ### IntelliJ IDEA ###
 .idea
 *.iws
-*.iml
 *.ipr
 
 ### NetBeans ###
@@ -25,9 +51,3 @@ target/
 /dist/
 /nbdist/
 /.nb-gradle/
-
-### VS Code ###
-.vscode/
-
-### MacOs ###
-.DS_Store
