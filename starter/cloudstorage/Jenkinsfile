@@ -1,0 +1,39 @@
+pipeline {
+    agent any
+
+    environment {
+        PATH = "/usr/local/bin:${PATH}"
+    }
+
+    tools {
+        maven 'maven_3_9_8'
+    }
+
+    stages {
+        stage('Build Maven') {
+            steps {
+                checkout([$class: 'GitSCM', branches: [[name: '*/master']], userRemoteConfigs: [[url: 'https://github.com/yassine01/Project-SuperDuperDrive.git']]])
+                dir('starter/cloudstorage') {
+                    sh 'mvn clean install -DskipTests'
+                }
+            }
+        }
+
+        stage('Build docker image') {
+            steps {
+                dir('starter/cloudstorage') {
+                    sh 'docker build -t th3builder/cloudstorage:latest .'
+                }
+            }
+        }
+
+        stage('Push image to Hub') {
+            steps {
+                withCredentials([string(credentialsId: 'docker-hub-psswd', variable: 'DOCKER_PASSWORD')]) {
+                    sh 'docker login -u th3builder -p ${DOCKER_PASSWORD}'
+                    sh 'docker push th3builder/cloudstorage:latest'
+                }
+            }
+        }
+    }
+}
