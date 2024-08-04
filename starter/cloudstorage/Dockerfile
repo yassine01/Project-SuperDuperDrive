@@ -27,4 +27,4 @@ WORKDIR /app/target
 EXPOSE 8080
 
 # Set the entry point to run the jar file
-ENTRYPOINT ["java", "-jar", "cloudstorage-0.0.1.jar"]
+ENTRYPOINT ["java", "-jar", "cloudstorage.jar"]
