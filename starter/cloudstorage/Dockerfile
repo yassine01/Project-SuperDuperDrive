@@ -20,8 +20,11 @@ COPY src src
 # Package the application
 RUN ./mvnw package -DskipTests
 
+# Set the working directory to the location of the JAR file
+WORKDIR /app/target
+
 # Expose the port the application runs on
 EXPOSE 8080
 
 # Set the entry point to run the jar file
-ENTRYPOINT ["java", "-jar", "target/cloudstorage-0.0.1.jar"]
+ENTRYPOINT ["java", "-jar", "cloudstorage-0.0.1.jar"]
